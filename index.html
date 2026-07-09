@@ -11,19 +11,19 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="ng-app">
+  <div class="fl-app">
 
     <!-- Navbar -->
-    <nav class="ng-nav">
-      <a href="https://tool.flowersink.com/" class="ng-nav-home" title="回到首页">
+    <nav class="fl-nav">
+      <a href="https://tool.flowersink.com/" class="fl-nav-home" title="回到首页">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
           <polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
       </a>
-      <a href="/nine-grid" class="ng-nav-brand">九宫格</a>
-      <div class="ng-nav-actions">
-        <a href="https://github.com/ZaiHuaOvO/tool.flowersink.com" target="_blank" class="ng-nav-home" title="GitHub 仓库">
+      <a href="/nine-grid" class="fl-nav-brand">九宫格</a>
+      <div class="fl-nav-actions">
+        <a href="https://github.com/ZaiHuaOvO/tool.flowersink.com" target="_blank" class="fl-nav-home" title="GitHub 仓库">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
           </svg>
@@ -32,63 +32,63 @@
     </nav>
 
     <!-- Main -->
-    <main class="ng-main">
+    <main class="fl-main">
 
       <!-- Tab Bar -->
-      <div class="ng-tab-bar">
-        <button class="ng-tab ng-tab--active" data-tab="single">单张处理</button>
-        <button class="ng-tab" data-tab="batch">批量处理</button>
-        <button class="ng-tab" data-tab="history">历史队列</button>
+      <div class="fl-tab-bar">
+        <button class="fl-tab fl-tab--active" data-tab="single">单张处理</button>
+        <button class="fl-tab" data-tab="batch">批量处理</button>
+        <button class="fl-tab" data-tab="history">历史队列</button>
       </div>
 
       <!-- Tab: 单张处理 -->
-      <div class="ng-tab-content ng-tab-content--active" id="tab-single">
+      <div class="fl-tab-content fl-tab-content--active" id="tab-single">
         <!-- 上传区：小尺寸居中，支持点击选择+粘贴 -->
-        <div class="ng-batch-upload-area" id="singleUploadZone">
-          <div class="ng-batch-upload-icon">
+        <div class="fl-batch-upload-area" id="singleUploadZone">
+          <div class="fl-batch-upload-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="17 8 12 3 7 8"/>
               <line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
           </div>
-          <div class="ng-batch-upload-text">点击选择图片 或 粘贴图片</div>
-          <div class="ng-batch-upload-hint">支持 JPG / PNG / WebP</div>
-          <input type="file" class="ng-batch-upload-input" id="singleFileInput" accept="image/jpeg,image/png,image/webp">
+          <div class="fl-batch-upload-text">点击选择图片 或 粘贴图片</div>
+          <div class="fl-batch-upload-hint">支持 JPG / PNG / WebP</div>
+          <input type="file" class="fl-batch-upload-input" id="singleFileInput" accept="image/jpeg,image/png,image/webp">
         </div>
 
-        <div class="ng-card" id="singleEditorCard" style="display:none;">
-          <div class="ng-single-layout">
+        <div class="fl-card" id="singleEditorCard" style="display:none;">
+          <div class="fl-single-layout">
             <!-- 左侧：图片选取 -->
             <div>
-              <div class="ng-section-title">图片选取</div>
-              <div class="ng-cropper-area">
+              <div class="fl-section-title">图片选取</div>
+              <div class="fl-cropper-area">
                 <img id="singleCropperImg" src="" alt="裁剪预览">
               </div>
-              <div class="ng-crop-buttons">
-                <button class="ng-btn ng-btn--solid" id="singleGenerateBtn" style="display:none;">生成</button>
-                <button class="ng-btn" id="singleResetBtn">重置</button>
-                <button class="ng-btn ng-btn--success" id="singleDownloadBtn" disabled>下载 ZIP</button>
+              <div class="fl-crop-buttons">
+                <button class="fl-btn fl-btn--solid" id="singleGenerateBtn" style="display:none;">生成</button>
+                <button class="fl-btn" id="singleResetBtn">重置</button>
+                <button class="fl-btn fl-btn--success" id="singleDownloadBtn" disabled>下载 ZIP</button>
               </div>
             </div>
             <!-- 右侧：预览 -->
             <div>
-              <div class="ng-section-title">预览</div>
-              <div class="ng-preview-area" id="singlePreviewArea">
-                <div class="ng-text-muted ng-text-caption">上传图片后自动生成预览</div>
+              <div class="fl-section-title">预览</div>
+              <div class="fl-preview-area" id="singlePreviewArea">
+                <div class="fl-text-muted fl-text-caption">上传图片后自动生成预览</div>
               </div>
-              <div class="ng-preview-controls">
-                <div class="ng-preview-control-item">
+              <div class="fl-preview-controls">
+                <div class="fl-preview-control-item">
                   <label>背景颜色</label>
-                  <div class="ng-color-picker-wrap">
+                  <div class="fl-color-picker-wrap">
                     <input type="color" id="singleBgColor" value="#f0f0f0">
-                    <span class="ng-color-picker-fill" id="singleBgColorFill" style="background:#f0f0f0;"></span>
+                    <span class="fl-color-picker-fill" id="singleBgColorFill" style="background:#f0f0f0;"></span>
                   </div>
                 </div>
-                <div class="ng-preview-control-item">
+                <div class="fl-preview-control-item">
                   <label>间距</label>
                   <input type="range" id="singleGapSlider" min="1" max="10" step="1" value="2">
-                  <span class="ng-gap-value" id="singleGapValue">2px</span>
+                  <span class="fl-gap-value" id="singleGapValue">2px</span>
                 </div>
               </div>
             </div>
@@ -97,45 +97,45 @@
       </div>
 
       <!-- Tab: 批量处理 -->
-      <div class="ng-tab-content" id="tab-batch">
+      <div class="fl-tab-content" id="tab-batch">
         <!-- 批量上传区：与单张同款虚线区域，支持点击选择+粘贴 -->
-        <div class="ng-batch-upload-area" id="batchUploadZone">
-          <div class="ng-batch-upload-icon">
+        <div class="fl-batch-upload-area" id="batchUploadZone">
+          <div class="fl-batch-upload-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="17 8 12 3 7 8"/>
               <line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
           </div>
-          <div class="ng-batch-upload-text">点击选择图片 或 粘贴图片</div>
-          <div class="ng-batch-upload-hint">支持 JPG / PNG / WebP（可多选）</div>
-          <input type="file" class="ng-batch-upload-input" id="batchFileInput" accept="image/jpeg,image/png,image/webp" multiple>
-          <div class="ng-batch-upload-result" id="batchPasteResult"></div>
+          <div class="fl-batch-upload-text">点击选择图片 或 粘贴图片</div>
+          <div class="fl-batch-upload-hint">支持 JPG / PNG / WebP（可多选）</div>
+          <input type="file" class="fl-batch-upload-input" id="batchFileInput" accept="image/jpeg,image/png,image/webp" multiple>
+          <div class="fl-batch-upload-result" id="batchPasteResult"></div>
         </div>
         <!-- 全部下载放在上传区下方 -->
-        <div class="ng-hidden" id="batchDownloadBar" style="margin-bottom:16px;">
-          <button class="ng-btn ng-btn--success ng-btn--block" id="batchDownloadAllBtn">下载全部 ZIP</button>
+        <div class="fl-hidden" id="batchDownloadBar" style="margin-bottom:16px;">
+          <button class="fl-btn fl-btn--success fl-btn--block" id="batchDownloadAllBtn">下载全部 ZIP</button>
         </div>
 
         <div id="batchItemsContainer"></div>
       </div>
 
       <!-- Tab: 历史队列 -->
-      <div class="ng-tab-content" id="tab-history">
-        <div class="ng-card">
-          <div class="ng-flex-between ng-mb-4">
-            <div class="ng-card-title ng-mb-0">历史记录</div>
-            <span class="ng-text-caption" id="historyStorageInfo">加载中...</span>
+      <div class="fl-tab-content" id="tab-history">
+        <div class="fl-card">
+          <div class="fl-flex-between fl-mb-4">
+            <div class="fl-card-title fl-mb-0">历史记录</div>
+            <span class="fl-text-caption" id="historyStorageInfo">加载中...</span>
           </div>
-          <p class="ng-text-caption ng-mb-3" style="margin-top:-8px;">
+          <p class="fl-text-caption fl-mb-3" style="margin-top:-8px;">
             存储在本地浏览器（IndexedDB），仅自己可见。
           </p>
-          <div class="ng-flex ng-gap-3 ng-mb-3">
-            <input type="text" class="ng-input" id="historySearchInput" placeholder="搜索图片名称..." style="max-width:280px;">
-            <button class="ng-btn ng-btn--danger" id="clearAllHistoryBtn" style="margin-left:auto;">清空所有</button>
+          <div class="fl-flex fl-gap-3 fl-mb-3">
+            <input type="text" class="fl-input" id="historySearchInput" placeholder="搜索图片名称..." style="max-width:280px;">
+            <button class="fl-btn fl-btn--danger" id="clearAllHistoryBtn" style="margin-left:auto;">清空所有</button>
           </div>
-          <div class="ng-table-wrap">
-            <table class="ng-table">
+          <div class="fl-table-wrap">
+            <table class="fl-table">
               <thead>
                 <tr>
                   <th style="width:56px">预览</th>
@@ -146,68 +146,68 @@
               </thead>
               <tbody id="historyTableBody">
                 <tr>
-                  <td colspan="4" class="ng-text-center ng-text-muted" style="padding:24px;">暂无历史记录</td>
+                  <td colspan="4" class="fl-text-center fl-text-muted" style="padding:24px;">暂无历史记录</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="ng-pagination" id="historyPagination"></div>
+          <div class="fl-pagination" id="historyPagination"></div>
         </div>
       </div>
 
     </main>
 
     <!-- Footer -->
-    <footer class="ng-footer">
+    <footer class="fl-footer">
       <p>所有操作均在客户端完成，不会上传图片到服务器</p>
-      <p>基于 <a href="https://fengyuanchen.github.io/cropperjs/" target="_blank" style="text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--ng-border);">Cropper.js</a> 实现</p>
+      <p>基于 <a href="https://fengyuanchen.github.io/cropperjs/" target="_blank" style="text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--fl-border);">Cropper.js</a> 实现</p>
       <p>&copy; 2026 <a href="https://github.com/ZaiHuaOvO" target="_blank">再花</a>. All rights reserved.</p>
     </footer>
 
     <!-- Toast -->
-    <div class="ng-toast-container" id="toastContainer"></div>
+    <div class="fl-toast-container" id="toastContainer"></div>
 
     <!-- Preview Modal (历史预览弹窗) -->
-    <div class="ng-modal-overlay" id="previewModal">
-      <div class="ng-modal">
-        <div class="ng-modal-header">
-          <span class="ng-modal-title">九宫格预览</span>
-          <button class="ng-modal-close" onclick="closePreviewModal()">&times;</button>
+    <div class="fl-modal-overlay" id="previewModal">
+      <div class="fl-modal">
+        <div class="fl-modal-header">
+          <span class="fl-modal-title">九宫格预览</span>
+          <button class="fl-modal-close" onclick="closePreviewModal()">&times;</button>
         </div>
-        <div class="ng-modal-body" id="previewModalBody">
-          <div id="previewModalCard" class="ng-moments-card" style="max-width:320px;margin:0 auto;"></div>
-          <div class="ng-preview-controls" style="margin-top:16px;">
-            <div class="ng-preview-control-item">
+        <div class="fl-modal-body" id="previewModalBody">
+          <div id="previewModalCard" class="fl-moments-card" style="max-width:320px;margin:0 auto;"></div>
+          <div class="fl-preview-controls" style="margin-top:16px;">
+            <div class="fl-preview-control-item">
               <label>背景颜色</label>
-              <div class="ng-color-picker-wrap">
+              <div class="fl-color-picker-wrap">
                 <input type="color" id="previewBgColor" value="#f0f0f0">
-                <span class="ng-color-picker-fill" id="previewBgColorFill" style="background:#f0f0f0;"></span>
+                <span class="fl-color-picker-fill" id="previewBgColorFill" style="background:#f0f0f0;"></span>
               </div>
             </div>
-            <div class="ng-preview-control-item">
+            <div class="fl-preview-control-item">
               <label>间距</label>
               <input type="range" id="previewGapSlider" min="1" max="10" step="1" value="2">
-              <span class="ng-gap-value" id="previewGapValue">2px</span>
+              <span class="fl-gap-value" id="previewGapValue">2px</span>
             </div>
           </div>
         </div>
-        <div class="ng-modal-footer">
-          <button class="ng-btn" onclick="closePreviewModal()">关闭</button>
+        <div class="fl-modal-footer">
+          <button class="fl-btn" onclick="closePreviewModal()">关闭</button>
         </div>
       </div>
     </div>
 
     <!-- Delete Confirm Modal -->
-    <div class="ng-modal-overlay" id="confirmModal">
-      <div class="ng-modal" style="max-width:380px;">
-        <div class="ng-modal-header">
-          <span class="ng-modal-title" id="confirmModalTitle">确认</span>
-          <button class="ng-modal-close" onclick="closeConfirmModal()">&times;</button>
+    <div class="fl-modal-overlay" id="confirmModal">
+      <div class="fl-modal" style="max-width:380px;">
+        <div class="fl-modal-header">
+          <span class="fl-modal-title" id="confirmModalTitle">确认</span>
+          <button class="fl-modal-close" onclick="closeConfirmModal()">&times;</button>
         </div>
-        <div class="ng-modal-body" id="confirmModalBody">确定执行此操作？</div>
-        <div class="ng-modal-footer">
-          <button class="ng-btn" onclick="closeConfirmModal()">取消</button>
-          <button class="ng-btn ng-btn--danger" id="confirmModalOkBtn">确定</button>
+        <div class="fl-modal-body" id="confirmModalBody">确定执行此操作？</div>
+        <div class="fl-modal-footer">
+          <button class="fl-btn" onclick="closeConfirmModal()">取消</button>
+          <button class="fl-btn fl-btn--danger" id="confirmModalOkBtn">确定</button>
         </div>
       </div>
     </div>

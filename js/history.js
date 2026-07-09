@@ -5,17 +5,17 @@
  *   { original_name, original_image: Blob, images: [Blob...9], created_at }
  */
 
-const NG_DB_NAME = 'NineGridHistory';
-const NG_STORE_NAME = 'historyItems';
-const NG_DB_VERSION = 2;
+const FL_DB_NAME = 'NineGridHistory';
+const FL_STORE_NAME = 'historyItems';
+const FL_DB_VERSION = 2;
 
-function ngOpenDB() {
+function flOpenDB() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open(NG_DB_NAME, NG_DB_VERSION);
+    const request = indexedDB.open(FL_DB_NAME, FL_DB_VERSION);
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
-      if (!db.objectStoreNames.contains(NG_STORE_NAME)) {
-        const store = db.createObjectStore(NG_STORE_NAME, {
+      if (!db.objectStoreNames.contains(FL_STORE_NAME)) {
+        const store = db.createObjectStore(FL_STORE_NAME, {
           keyPath: 'id',
           autoIncrement: true
         });
@@ -32,10 +32,10 @@ function ngOpenDB() {
  * 添加历史记录
  * @param {Object} item - { original_name, original_image: Blob, images: [blob1...blob9], created_at }
  */
-async function ngAddHistory(item) {
-  const db = await ngOpenDB();
-  const tx = db.transaction(NG_STORE_NAME, 'readwrite');
-  const store = tx.objectStore(NG_STORE_NAME);
+async function flAddHistory(item) {
+  const db = await flOpenDB();
+  const tx = db.transaction(FL_STORE_NAME, 'readwrite');
+  const store = tx.objectStore(FL_STORE_NAME);
   const record = {
     original_name: item.original_name,
     original_image: item.original_image || null,
@@ -49,10 +49,10 @@ async function ngAddHistory(item) {
   });
 }
 
-async function ngSearchHistory(keyword, page, pageSize) {
-  const db = await ngOpenDB();
-  const tx = db.transaction(NG_STORE_NAME, 'readonly');
-  const store = tx.objectStore(NG_STORE_NAME);
+async function flSearchHistory(keyword, page, pageSize) {
+  const db = await flOpenDB();
+  const tx = db.transaction(FL_STORE_NAME, 'readonly');
+  const store = tx.objectStore(FL_STORE_NAME);
   const all = await new Promise((resolve) => {
     const request = store.getAll();
     request.onsuccess = () => resolve(request.result);
@@ -81,10 +81,10 @@ async function ngSearchHistory(keyword, page, pageSize) {
   return { items, total, page, pageSize };
 }
 
-async function ngGetHistoryDetail(id) {
-  const db = await ngOpenDB();
-  const tx = db.transaction(NG_STORE_NAME, 'readonly');
-  const store = tx.objectStore(NG_STORE_NAME);
+async function flGetHistoryDetail(id) {
+  const db = await flOpenDB();
+  const tx = db.transaction(FL_STORE_NAME, 'readonly');
+  const store = tx.objectStore(FL_STORE_NAME);
   return new Promise((resolve, reject) => {
     const request = store.get(id);
     request.onsuccess = () => resolve(request.result);
@@ -92,10 +92,10 @@ async function ngGetHistoryDetail(id) {
   });
 }
 
-async function ngDeleteHistory(id) {
-  const db = await ngOpenDB();
-  const tx = db.transaction(NG_STORE_NAME, 'readwrite');
-  const store = tx.objectStore(NG_STORE_NAME);
+async function flDeleteHistory(id) {
+  const db = await flOpenDB();
+  const tx = db.transaction(FL_STORE_NAME, 'readwrite');
+  const store = tx.objectStore(FL_STORE_NAME);
   return new Promise((resolve, reject) => {
     const request = store.delete(id);
     request.onsuccess = () => resolve(true);
@@ -103,10 +103,10 @@ async function ngDeleteHistory(id) {
   });
 }
 
-async function ngClearAllHistory() {
-  const db = await ngOpenDB();
-  const tx = db.transaction(NG_STORE_NAME, 'readwrite');
-  const store = tx.objectStore(NG_STORE_NAME);
+async function flClearAllHistory() {
+  const db = await flOpenDB();
+  const tx = db.transaction(FL_STORE_NAME, 'readwrite');
+  const store = tx.objectStore(FL_STORE_NAME);
   return new Promise((resolve, reject) => {
     const request = store.clear();
     request.onsuccess = () => resolve(true);
@@ -114,10 +114,10 @@ async function ngClearAllHistory() {
   });
 }
 
-async function ngGetStorageInfo() {
-  const db = await ngOpenDB();
-  const tx = db.transaction(NG_STORE_NAME, 'readonly');
-  const store = tx.objectStore(NG_STORE_NAME);
+async function flGetStorageInfo() {
+  const db = await flOpenDB();
+  const tx = db.transaction(FL_STORE_NAME, 'readonly');
+  const store = tx.objectStore(FL_STORE_NAME);
   const all = await new Promise((resolve) => {
     const request = store.getAll();
     request.onsuccess = () => resolve(request.result);

@@ -28,10 +28,10 @@ let colorDebounceTimers = {};
 function showToast(msg, type) {
   const c = document.getElementById('toastContainer');
   const t = document.createElement('div');
-  t.className = 'ng-toast';
-  if (type === 'error') t.className += ' ng-toast--error';
-  else if (type === 'warning') t.className += ' ng-toast--warning';
-  else if (type === 'info') t.className += ' ng-toast--info';
+  t.className = 'fl-toast';
+  if (type === 'error') t.className += ' fl-toast--error';
+  else if (type === 'warning') t.className += ' fl-toast--warning';
+  else if (type === 'info') t.className += ' fl-toast--info';
   t.textContent = msg;
   t.onclick = function () { t.remove(); };
   c.appendChild(t);
@@ -79,11 +79,11 @@ function openLightbox(src) {
 // ══════════════════════════════════════════
 
 function switchTab(tabId) {
-  document.querySelectorAll('.ng-tab').forEach(function (b) {
-    b.classList.toggle('ng-tab--active', b.dataset.tab === tabId);
+  document.querySelectorAll('.fl-tab').forEach(function (b) {
+    b.classList.toggle('fl-tab--active', b.dataset.tab === tabId);
   });
-  document.querySelectorAll('.ng-tab-content').forEach(function (c) {
-    c.classList.toggle('ng-tab-content--active', c.id === 'tab-' + tabId);
+  document.querySelectorAll('.fl-tab-content').forEach(function (c) {
+    c.classList.toggle('fl-tab-content--active', c.id === 'tab-' + tabId);
   });
   if (tabId === 'history') loadHistory(1);
 }
@@ -193,23 +193,23 @@ function renderMomentsPreview(container, canvases, gap, bgColor) {
   container.innerHTML = '';
 
   const card = document.createElement('div');
-  card.className = 'ng-moments-card';
+  card.className = 'fl-moments-card';
 
   const header = document.createElement('div');
-  header.className = 'ng-moments-header';
+  header.className = 'fl-moments-header';
   header.innerHTML = `
-    <img class="ng-moments-avatar" src="${DEFAULT_AVATAR}" alt="avatar">
-    <span class="ng-moments-name">${DEFAULT_NAME}</span>
+    <img class="fl-moments-avatar" src="${DEFAULT_AVATAR}" alt="avatar">
+    <span class="fl-moments-name">${DEFAULT_NAME}</span>
   `;
   card.appendChild(header);
 
   const gridWrap = document.createElement('div');
-  gridWrap.className = 'ng-moments-grid-wrap';
+  gridWrap.className = 'fl-moments-grid-wrap';
   gridWrap.style.background = bgColor || '#f0f0f0';
 
   const grid = document.createElement('div');
-  grid.className = 'ng-moments-grid';
-  grid.style.setProperty('--ng-grid-gap', gap + 'px');
+  grid.className = 'fl-moments-grid';
+  grid.style.setProperty('--fl-grid-gap', gap + 'px');
 
   canvases.forEach((c) => {
     const img = document.createElement('img');
@@ -222,7 +222,7 @@ function renderMomentsPreview(container, canvases, gap, bgColor) {
   card.appendChild(gridWrap);
 
   const footer = document.createElement('div');
-  footer.className = 'ng-moments-footer';
+  footer.className = 'fl-moments-footer';
   footer.innerHTML = '<span>Like</span><span>Comment</span>';
   card.appendChild(footer);
 
@@ -252,42 +252,42 @@ function addBatchItem(file) {
 
   const container = document.getElementById('batchItemsContainer');
   const div = document.createElement('div');
-  div.className = 'ng-batch-item';
+  div.className = 'fl-batch-item';
   div.id = 'batch-item-' + id;
   div.innerHTML = `
-    <div class="ng-batch-header">
-      <span class="ng-batch-filename">${escapeHtml(file.name)}</span>
-      <button class="ng-btn ng-btn--sm ng-btn--danger" onclick="removeBatchItem(${id})">移除</button>
+    <div class="fl-batch-header">
+      <span class="fl-batch-filename">${escapeHtml(file.name)}</span>
+      <button class="fl-btn fl-btn--sm fl-btn--danger" onclick="removeBatchItem(${id})">移除</button>
     </div>
-    <div class="ng-batch-layout">
+    <div class="fl-batch-layout">
       <div>
-        <div class="ng-section-title">图片选取</div>
-        <div class="ng-cropper-area">
+        <div class="fl-section-title">图片选取</div>
+        <div class="fl-cropper-area">
           <img id="batch-cropper-img-${id}" src="" alt="裁剪">
         </div>
-        <div class="ng-crop-buttons">
-          <button class="ng-btn ng-btn--solid ng-btn--sm" id="batch-gen-${id}" style="display:none;" onclick="generateBatchItem(${id})">生成</button>
-          <button class="ng-btn ng-btn--sm" onclick="resetBatchCropper(${id})">重置</button>
-          <button class="ng-btn ng-btn--sm ng-btn--success" onclick="downloadBatchItem(${id})" id="batch-dl-${id}" disabled>下载 ZIP</button>
+        <div class="fl-crop-buttons">
+          <button class="fl-btn fl-btn--solid fl-btn--sm" id="batch-gen-${id}" style="display:none;" onclick="generateBatchItem(${id})">生成</button>
+          <button class="fl-btn fl-btn--sm" onclick="resetBatchCropper(${id})">重置</button>
+          <button class="fl-btn fl-btn--sm fl-btn--success" onclick="downloadBatchItem(${id})" id="batch-dl-${id}" disabled>下载 ZIP</button>
         </div>
       </div>
       <div>
-        <div class="ng-section-title">预览</div>
-        <div class="ng-preview-area" id="batch-preview-${id}">
-          <div class="ng-text-muted ng-text-caption">等待裁剪...</div>
+        <div class="fl-section-title">预览</div>
+        <div class="fl-preview-area" id="batch-preview-${id}">
+          <div class="fl-text-muted fl-text-caption">等待裁剪...</div>
         </div>
-        <div class="ng-preview-controls">
-          <div class="ng-preview-control-item">
+        <div class="fl-preview-controls">
+          <div class="fl-preview-control-item">
             <label>背景颜色</label>
-            <div class="ng-color-picker-wrap">
+            <div class="fl-color-picker-wrap">
               <input type="color" id="batch-bgcolor-${id}" value="#f0f0f0">
-              <span class="ng-color-picker-fill" style="background:#f0f0f0;"></span>
+              <span class="fl-color-picker-fill" style="background:#f0f0f0;"></span>
             </div>
           </div>
-          <div class="ng-preview-control-item">
+          <div class="fl-preview-control-item">
             <label>间距</label>
             <input type="range" min="1" max="10" step="1" value="2" oninput="updateBatchGap(${id}, this.value)">
-            <span class="ng-gap-value" id="batch-gap-val-${id}" style="font-size:13px;min-width:24px;">2px</span>
+            <span class="fl-gap-value" id="batch-gap-val-${id}" style="font-size:13px;min-width:24px;">2px</span>
           </div>
         </div>
       </div>
@@ -296,7 +296,7 @@ function addBatchItem(file) {
   container.appendChild(div);
 
   // 显示下载全部按钮
-  document.getElementById('batchDownloadBar').classList.remove('ng-hidden');
+  document.getElementById('batchDownloadBar').classList.remove('fl-hidden');
 
   const reader = new FileReader();
   reader.onload = function (e) {
@@ -350,7 +350,7 @@ function saveBatchItemToHistory(item, file) {
           Promise.all(
             item.canvases.map(c => new Promise(resolve => c.toBlob(resolve, 'image/png')))
           ).then(blobs => {
-            ngAddHistory({
+            flAddHistory({
               original_name: file.name,
               original_image: originalBlob,
               images: blobs,
@@ -382,7 +382,7 @@ function removeBatchItem(id) {
   const el = document.getElementById('batch-item-' + id);
   if (el) el.remove();
   if (batchState.length === 0) {
-    document.getElementById('batchDownloadBar').classList.add('ng-hidden');
+    document.getElementById('batchDownloadBar').classList.add('fl-hidden');
   }
 }
 
@@ -390,7 +390,7 @@ function generateBatchItem(id) {
   const item = batchState.find(i => i.id === id);
   if (!item || !item.cropper) return;
 
-  const gapSlider = document.querySelector('#batch-item-' + id + ' .ng-preview-control-item:nth-child(2) input[type="range"]');
+  const gapSlider = document.querySelector('#batch-item-' + id + ' .fl-preview-control-item:nth-child(2) input[type="range"]');
   const gap = parseInt(gapSlider ? gapSlider.value : '2');
 
   const croppedCanvas = item.cropper.getCroppedCanvas({
@@ -415,7 +415,7 @@ function generateBatchItem(id) {
 
   item.canvases = canvases;
 
-  const bgColorPicker = document.querySelector('#batch-item-' + id + ' .ng-color-picker-wrap input[type="color"]');
+  const bgColorPicker = document.querySelector('#batch-item-' + id + ' .fl-color-picker-wrap input[type="color"]');
   const bgColor = bgColorPicker ? bgColorPicker.value : '#f0f0f0';
 
   const previewArea = document.getElementById('batch-preview-' + id);
@@ -431,7 +431,7 @@ function updateBatchGap(id, value) {
   document.getElementById('batch-gap-val-' + id).textContent = value + 'px';
   const item = batchState.find(i => i.id === id);
   if (item && item.canvases.length === 9) {
-    const bgColorPicker = document.querySelector('#batch-item-' + id + ' .ng-color-picker-wrap input[type="color"]');
+    const bgColorPicker = document.querySelector('#batch-item-' + id + ' .fl-color-picker-wrap input[type="color"]');
     const bgColor = bgColorPicker ? bgColorPicker.value : '#f0f0f0';
     const previewArea = document.getElementById('batch-preview-' + id);
     renderMomentsPreview(previewArea, item.canvases, parseInt(value), bgColor);
@@ -441,9 +441,9 @@ function updateBatchGap(id, value) {
 function updateBatchPreview(id) {
   const item = batchState.find(i => i.id === id);
   if (item && item.canvases.length === 9) {
-    const gap = parseInt(document.querySelector('#batch-item-' + id + ' .ng-preview-control-item:nth-child(2) input[type="range"]').value || '2');
-    const bgColor = document.querySelector('#batch-item-' + id + ' .ng-color-picker-wrap input[type="color"]').value;
-    const fill = document.querySelector('#batch-item-' + id + ' .ng-color-picker-fill');
+    const gap = parseInt(document.querySelector('#batch-item-' + id + ' .fl-preview-control-item:nth-child(2) input[type="range"]').value || '2');
+    const bgColor = document.querySelector('#batch-item-' + id + ' .fl-color-picker-wrap input[type="color"]').value;
+    const fill = document.querySelector('#batch-item-' + id + ' .fl-color-picker-fill');
     if (fill) fill.style.background = bgColor;
     const previewArea = document.getElementById('batch-preview-' + id);
     renderMomentsPreview(previewArea, item.canvases, gap, bgColor);
@@ -602,7 +602,7 @@ async function saveHistory(file, originalName, canvases) {
     const blobs = await Promise.all(
       canvases.map(c => new Promise(resolve => c.toBlob(resolve, 'image/png')))
     );
-    await ngAddHistory({
+    await flAddHistory({
       original_name: originalName,
       original_image: originalBlob,
       images: blobs,
@@ -616,7 +616,7 @@ async function loadHistory(page) {
   if (page) historyCurrentPage = page;
   const kw = document.getElementById('historySearchInput').value;
   try {
-    const result = await ngSearchHistory(kw, historyCurrentPage, 20);
+    const result = await flSearchHistory(kw, historyCurrentPage, 20);
     renderHistoryTable(result);
     updateHistoryStorageInfo();
   } catch (e) {
@@ -627,7 +627,7 @@ async function loadHistory(page) {
 function renderHistoryTable(result) {
   const tbody = document.getElementById('historyTableBody');
   if (!result.items || !result.items.length) {
-    tbody.innerHTML = '<tr><td colspan="4" class="ng-text-center ng-text-muted" style="padding:24px;">暂无历史记录</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="4" class="fl-text-center fl-text-muted" style="padding:24px;">暂无历史记录</td></tr>';
     document.getElementById('historyPagination').innerHTML = '';
     return;
   }
@@ -635,18 +635,18 @@ function renderHistoryTable(result) {
   tbody.innerHTML = result.items.map(function (item) {
     // 原图 — 可点击放大
     const thumb = item.thumbnail_url
-      ? '<img src="' + item.thumbnail_url + '" class="ng-thumb" style="cursor:pointer;" onclick="openLightbox(\'' + item.thumbnail_url + '\')" alt="原图">'
-      : '<span class="ng-text-muted">无</span>';
+      ? '<img src="' + item.thumbnail_url + '" class="fl-thumb" style="cursor:pointer;" onclick="openLightbox(\'' + item.thumbnail_url + '\')" alt="原图">'
+      : '<span class="fl-text-muted">无</span>';
     const time = new Date(item.created_at).toLocaleString('zh-CN');
     const origName = escapeHtml(item.original_name);
     return '<tr>' +
       '<td>' + thumb + '</td>' +
-      '<td class="ng-truncate" style="max-width:200px;">' + origName + '</td>' +
+      '<td class="fl-truncate" style="max-width:200px;">' + origName + '</td>' +
       '<td>' + time + '</td>' +
-      '<td><div class="ng-action-group">' +
-        '<button class="ng-btn ng-btn--sm" onclick="previewHistory(' + item.id + ',\'' + origName + '\')" title="预览">预览</button>' +
-        '<button class="ng-btn ng-btn--sm" onclick="downloadFromHistory(' + item.id + ',\'' + origName + '\')" title="下载">下载</button>' +
-        '<button class="ng-btn ng-btn--sm ng-btn--danger" onclick="confirmDeleteHistory(' + item.id + ')" title="删除">删除</button>' +
+      '<td><div class="fl-action-group">' +
+        '<button class="fl-btn fl-btn--sm" onclick="previewHistory(' + item.id + ',\'' + origName + '\')" title="预览">预览</button>' +
+        '<button class="fl-btn fl-btn--sm" onclick="downloadFromHistory(' + item.id + ',\'' + origName + '\')" title="下载">下载</button>' +
+        '<button class="fl-btn fl-btn--sm fl-btn--danger" onclick="confirmDeleteHistory(' + item.id + ')" title="删除">删除</button>' +
       '</div></td>' +
     '</tr>';
   }).join('');
@@ -661,14 +661,14 @@ function renderHistoryPagination(total, page, pageSize) {
   let html = '';
   const s = Math.max(1, page - 2), e = Math.min(tp, page + 2);
   if (page > 1) html += '<button onclick="loadHistory(' + (page - 1) + ')">上一页</button>';
-  for (let i = s; i <= e; i++) html += '<button class="' + (i === page ? 'ng-pagination--active' : '') + '" onclick="loadHistory(' + i + ')">' + i + '</button>';
+  for (let i = s; i <= e; i++) html += '<button class="' + (i === page ? 'fl-pagination--active' : '') + '" onclick="loadHistory(' + i + ')">' + i + '</button>';
   if (page < tp) html += '<button onclick="loadHistory(' + (page + 1) + ')">下一页</button>';
   div.innerHTML = html;
 }
 
 async function previewHistory(id) {
   try {
-    const record = await ngGetHistoryDetail(id);
+    const record = await flGetHistoryDetail(id);
     if (!record || !record.images || record.images.length !== 9) {
       showToast('历史记录图片数据缺失', 'error');
       return;
@@ -695,7 +695,7 @@ async function previewHistory(id) {
       });
     };
 
-    document.getElementById('previewModal').classList.add('ng-modal-overlay--open');
+    document.getElementById('previewModal').classList.add('fl-modal-overlay--open');
   } catch (e) {
     showToast('预览加载失败', 'error');
     console.warn(e);
@@ -707,24 +707,24 @@ function renderPreviewModalCard(dataURLs, gap, bgColor) {
   container.innerHTML = '';
 
   const card = document.createElement('div');
-  card.className = 'ng-moments-card';
+  card.className = 'fl-moments-card';
   card.style.maxWidth = '100%';
 
   const header = document.createElement('div');
-  header.className = 'ng-moments-header';
+  header.className = 'fl-moments-header';
   header.innerHTML = `
-    <img class="ng-moments-avatar" src="${DEFAULT_AVATAR}" alt="avatar">
-    <span class="ng-moments-name">${DEFAULT_NAME}</span>
+    <img class="fl-moments-avatar" src="${DEFAULT_AVATAR}" alt="avatar">
+    <span class="fl-moments-name">${DEFAULT_NAME}</span>
   `;
   card.appendChild(header);
 
   const gridWrap = document.createElement('div');
-  gridWrap.className = 'ng-moments-grid-wrap';
+  gridWrap.className = 'fl-moments-grid-wrap';
   gridWrap.style.background = bgColor || '#f0f0f0';
 
   const grid = document.createElement('div');
-  grid.className = 'ng-moments-grid';
-  grid.style.setProperty('--ng-grid-gap', gap + 'px');
+  grid.className = 'fl-moments-grid';
+  grid.style.setProperty('--fl-grid-gap', gap + 'px');
 
   dataURLs.forEach(url => {
     const img = document.createElement('img');
@@ -737,7 +737,7 @@ function renderPreviewModalCard(dataURLs, gap, bgColor) {
   card.appendChild(gridWrap);
 
   const footer = document.createElement('div');
-  footer.className = 'ng-moments-footer';
+  footer.className = 'fl-moments-footer';
   footer.innerHTML = '<span>Like</span><span>Comment</span>';
   card.appendChild(footer);
 
@@ -745,7 +745,7 @@ function renderPreviewModalCard(dataURLs, gap, bgColor) {
 }
 
 function closePreviewModal() {
-  document.getElementById('previewModal').classList.remove('ng-modal-overlay--open');
+  document.getElementById('previewModal').classList.remove('fl-modal-overlay--open');
 }
 
 function confirmDeleteHistory(id) {
@@ -753,7 +753,7 @@ function confirmDeleteHistory(id) {
   document.getElementById('confirmModalBody').textContent = '确定删除此历史记录？图片数据也将从本地删除，不可恢复。';
   document.getElementById('confirmModalOkBtn').onclick = async function () {
     try {
-      await ngDeleteHistory(id);
+      await flDeleteHistory(id);
       showToast('已删除', 'success');
       loadHistory(historyCurrentPage);
     } catch (e) {
@@ -761,11 +761,11 @@ function confirmDeleteHistory(id) {
     }
     closeConfirmModal();
   };
-  document.getElementById('confirmModal').classList.add('ng-modal-overlay--open');
+  document.getElementById('confirmModal').classList.add('fl-modal-overlay--open');
 }
 
 function closeConfirmModal() {
-  document.getElementById('confirmModal').classList.remove('ng-modal-overlay--open');
+  document.getElementById('confirmModal').classList.remove('fl-modal-overlay--open');
 }
 
 async function clearAllHistory() {
@@ -773,7 +773,7 @@ async function clearAllHistory() {
   document.getElementById('confirmModalBody').textContent = '确定清空所有历史记录？此操作不可恢复。';
   document.getElementById('confirmModalOkBtn').onclick = async function () {
     try {
-      await ngClearAllHistory();
+      await flClearAllHistory();
       showToast('已清空所有历史', 'success');
       loadHistory(1);
     } catch (e) {
@@ -781,12 +781,12 @@ async function clearAllHistory() {
     }
     closeConfirmModal();
   };
-  document.getElementById('confirmModal').classList.add('ng-modal-overlay--open');
+  document.getElementById('confirmModal').classList.add('fl-modal-overlay--open');
 }
 
 async function updateHistoryStorageInfo() {
   try {
-    const info = await ngGetStorageInfo();
+    const info = await flGetStorageInfo();
     document.getElementById('historyStorageInfo').textContent = '共 ' + info.count + ' 条记录，占用 ' + info.totalSizeMB + ' MB';
   } catch (e) {
     document.getElementById('historyStorageInfo').textContent = '信息获取失败';
@@ -800,7 +800,7 @@ async function updateHistoryStorageInfo() {
 document.addEventListener('DOMContentLoaded', function () {
 
   // Tab switching
-  document.querySelectorAll('.ng-tab').forEach(function (b) {
+  document.querySelectorAll('.fl-tab').forEach(function (b) {
     b.addEventListener('click', function () { switchTab(this.dataset.tab); });
   });
 
@@ -821,14 +821,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     singleZone.addEventListener('dragover', function (e) {
       e.preventDefault();
-      singleZone.classList.add('ng-batch-upload-area--dragover');
+      singleZone.classList.add('fl-batch-upload-area--dragover');
     });
     singleZone.addEventListener('dragleave', function () {
-      singleZone.classList.remove('ng-batch-upload-area--dragover');
+      singleZone.classList.remove('fl-batch-upload-area--dragover');
     });
     singleZone.addEventListener('drop', function (e) {
       e.preventDefault();
-      singleZone.classList.remove('ng-batch-upload-area--dragover');
+      singleZone.classList.remove('fl-batch-upload-area--dragover');
       if (e.dataTransfer.files && e.dataTransfer.files.length) {
         loadSingleFile(e.dataTransfer.files[0]);
       }
@@ -881,14 +881,14 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   batchZone.addEventListener('dragover', function (e) {
     e.preventDefault();
-    batchZone.classList.add('ng-batch-upload-area--dragover');
+    batchZone.classList.add('fl-batch-upload-area--dragover');
   });
   batchZone.addEventListener('dragleave', function () {
-    batchZone.classList.remove('ng-batch-upload-area--dragover');
+    batchZone.classList.remove('fl-batch-upload-area--dragover');
   });
   batchZone.addEventListener('drop', function (e) {
     e.preventDefault();
-    batchZone.classList.remove('ng-batch-upload-area--dragover');
+    batchZone.classList.remove('fl-batch-upload-area--dragover');
     if (e.dataTransfer.files && e.dataTransfer.files.length) {
       handleBatchFiles(e.dataTransfer.files);
     }

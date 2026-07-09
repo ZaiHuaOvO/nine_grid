@@ -6,7 +6,7 @@
 /**
  * 生成4位随机数字
  */
-function ngRandomId() {
+function flRandomId() {
   return String(Math.floor(1000 + Math.random() * 9000));
 }
 
@@ -28,7 +28,7 @@ function blobToDataURL(blob) {
  * @returns {Promise<{zip: JSZip, folderName: string}>}
  */
 async function packSingleGrid(baseName, canvases) {
-  const randId = ngRandomId();
+  const randId = flRandomId();
   const folderName = baseName + '_' + randId;
   const zip = new JSZip();
   const folder = zip.folder(folderName);
@@ -56,11 +56,11 @@ async function downloadSingleGrid(baseName, canvases) {
  * @param {Array<{baseName, canvases}>} items
  */
 async function downloadBatchGrid(items) {
-  const batchId = '批量处理_' + ngRandomId();
+  const batchId = '批量处理_' + flRandomId();
   const zip = new JSZip();
 
   for (const item of items) {
-    const randId = ngRandomId();
+    const randId = flRandomId();
     const folderName = item.baseName + '_' + randId;
     const folder = zip.folder(folderName);
 
@@ -78,14 +78,14 @@ async function downloadBatchGrid(items) {
  * 从历史记录下载九宫格
  */
 async function downloadFromHistory(id, originalName) {
-  const record = await ngGetHistoryDetail(id);
+  const record = await flGetHistoryDetail(id);
   if (!record || !record.images || record.images.length !== 9) {
     showToast('历史记录图片数据缺失', 'error');
     return;
   }
 
   const baseName = originalName.replace(/\.[^/.]+$/, '');
-  const randId = ngRandomId();
+  const randId = flRandomId();
   const folderName = baseName + '_' + randId;
   const zip = new JSZip();
   const folder = zip.folder(folderName);
